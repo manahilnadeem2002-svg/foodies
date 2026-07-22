@@ -1,76 +1,24 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+// Mobile Navigation Menu Toggle
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
 
-
-function addToCart(name,price){
-
-    cart.push({
-        name:name,
-        price:price
-    });
-
-    localStorage.setItem("cart",JSON.stringify(cart));
-
-    alert(name+" Added To Cart");
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
 }
 
-
-
-function showCart(){
-
-let cartItems=document.getElementById("cartItems");
-
-if(!cartItems) return;
-
-
-cartItems.innerHTML="";
-
-let total=0;
-
-
-cart.forEach((item,index)=>{
-
-total+=item.price;
-
-
-cartItems.innerHTML+=`
-
-<div>
-<h3>${item.name}</h3>
-<p>Price: Rs ${item.price}</p>
-
-<button onclick="removeCart(${index})">
-Remove
-</button>
-
-</div>
-
-<hr>
-
-`;
-
-});
-
-
-cartItems.innerHTML+=`
-
-<h2>Total: Rs ${total}</h2>
-
-`;
-
+// Menu Order Function
+function addToCart(itemName) {
+  alert(`${itemName} has been added to your order!`);
 }
 
-
-
-function removeCart(index){
-
-cart.splice(index,1);
-
-localStorage.setItem("cart",JSON.stringify(cart));
-
-showCart();
-
+// Form Submission Handling
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Thank you! Your message has been received.');
+    contactForm.reset();
+  });
 }
-
-
-
-window.onload=showCart;
